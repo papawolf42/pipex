@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 19:25:32 by gunkim            #+#    #+#             */
-/*   Updated: 2022/01/21 04:31:18 by gunkim           ###   ########.fr       */
+/*   Updated: 2022/01/21 07:03:25 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,6 @@ int	main(int argc, char **argv, char **envp)
 	if (paths == NULL)
 		err_msg("malloc");
 	ft_execute_parellel(argv, envp, paths);
+	ft_free_split(paths);
 	return (0);
 }
