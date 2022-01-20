@@ -6,26 +6,30 @@
 /*   By: gunkim <gunkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 19:26:20 by gunkim            #+#    #+#             */
-/*   Updated: 2022/01/21 01:05:09 by gunkim           ###   ########.fr       */
+/*   Updated: 2022/01/21 04:33:12 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-/*
-** fcntl.h => open()
-*/
 # include "libft.h"
 # include <fcntl.h>
 # include <sys/wait.h>
 # include <errno.h>
 
-# define ERROR -1
-# define ERROR_INFILE -2
-# define ERROR_OUTFILE -3
-# define ERROR_PATH -4
+/*
+** utils.c
+*/
+void	err_msg(char *msg);
+void	ft_free_split(char **strs);
 
-int	err_msg(char *s);
+/*
+** file.c
+*/
+void	ft_open_infile(char *filename);
+void	ft_open_outfile(char *filename);
+char	**ft_get_paths(char **envp);
+char	*ft_find_path(char **paths, char *cmd);
 
 #endif

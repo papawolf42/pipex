@@ -6,15 +6,27 @@
 /*   By: gunkim <gunkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 19:25:29 by gunkim            #+#    #+#             */
-/*   Updated: 2022/01/14 19:39:51 by gunkim           ###   ########.fr       */
+/*   Updated: 2022/01/21 04:13:23 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	err_msg(char *s)
+void	err_msg(char *msg)
 {
-	if (s == NULL)
-		ft_putstr_fd("ERROR\n", STDERR_FILENO);
-	return (ERROR);
+	perror(msg);
+	exit(1);
+}
+
+void	ft_free_split(char **strs)
+{
+	int	i;
+
+	i = 0;
+	while (strs[i])
+	{
+		free(strs[i]);
+		i++;
+	}
+	free(strs);
 }
