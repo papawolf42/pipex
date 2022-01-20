@@ -6,7 +6,7 @@
 #    By: gunkim <gunkim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/13 22:16:25 by gunkim            #+#    #+#              #
-#    Updated: 2022/01/21 04:31:03 by gunkim           ###   ########.fr        #
+#    Updated: 2022/01/21 04:37:25 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,9 +59,10 @@ RFLAGS    := -rf
 # path
 # =========================
 
-DIR_INC := include
-DIR_OBJ := obj
-DIR_SRC := src
+DIR_INC       := include
+DIR_OBJ       := obj
+DIR_SRC       := src
+DIR_SRC_BONUS := src_bonus
 
 # =========================
 # source files
@@ -73,18 +74,26 @@ SRCS := $(addprefix $(DIR_SRC)/, \
 	file.c \
 )
 
+SRCS_BONUS := $(addprefix $(DIR_SRC)/, \
+	main_bonus.c \
+	utils_bonus.c \
+	file_bonus.c \
+)
+
 # =========================
 # vpath
 # =========================
 
 vpath %.c \
-	$(DIR_SRC)
+	$(DIR_SRC) \
+	$(DIR_SRC_BONUS)
 
 # =========================
 # object files
 # =========================
 
 OBJS := $(addprefix $(DIR_OBJ)/, $(notdir $(SRCS:.c=.o)))
+OBJS_BONUS := $(addprefix $(DIR_OBJ)/, $(notdir $(SRCS_BONUS:.c=.o)))
 DEPS := $(notdir $(SRCS:.c=.d))
 
 # =========================
@@ -121,7 +130,11 @@ fclean :
 re : fclean all
 
 $(NAME) : $(NAME_LIBFT) $(DIR_OBJ) $(OBJS)
-	@$(CC) $(CFLAGS) $(INCLUDES) $(LIBFLAGS) $(OBJS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(INCLUDES) $(LIBFLAGS) $(OBJS) -o $@
+	@printf "$(ERCR)[$(NAME)] ✔️  Make complete !!"
+
+$(NAME_BONUS) : $(NAME_LIBFT) $(DIR_OBJ) $(OBJS_BONUS)
+	@$(CC) $(CFLAGS) $(INCLUDES) $(LIBFLAGS) $(OBJS_BONUS) -o $@
 	@printf "$(ERCR)[$(NAME)] ✔️  Make complete !!"
 
 $(DIR_OBJ) :
