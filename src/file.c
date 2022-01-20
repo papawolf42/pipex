@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 04:29:09 by gunkim            #+#    #+#             */
-/*   Updated: 2022/01/21 04:44:06 by gunkim           ###   ########.fr       */
+/*   Updated: 2022/01/21 07:23:06 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,6 @@ char	*ft_find_path(char **paths, char *cmd)
 		i++;
 	}
 	if (paths[i] == NULL)
-		return (NULL);
+		err_msg(cmd);
 	return (path);
 }
